@@ -1,0 +1,22 @@
+@mixin flex_center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex_between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin flex_end {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+@mixin block_border {
+  border: 1px solid $color_gray;
+  border-radius: $block_rounded;
+}

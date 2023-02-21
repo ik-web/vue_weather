@@ -2,9 +2,23 @@ $font_size: 16px;
 $font_size_small: 14px;
 $font_family: sans-serif;
 
-$color_main: #181818;
+$color_main: #202020;
 $color_secondary: #fff;
+$color_gray: #808080;
+$color_gray_dark: #464646;
+$color_gray_light: #b8b8b8;
+$color_overlay: #464646c9;
+$color_red: #ca0000;
+$color_red_dark: #8b0000;
 
 $padding_block: 16px;
 $padding_block_mobile: 12px;
 
+$block_rounded: 8px;
+
+$height_header: 80px;
+
+$box_shadow: 1px 1px 4px $color_gray;
+
+$form_item_size: 36px;
+$transition_behavior: 0.15s linear;

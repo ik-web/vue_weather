@@ -1,14 +1,12 @@
 <template>
-  <div class="container">
-    <h1>
-      Vue Weather
-    </h1>
-  </div>
+  <delete-confirm v-if="false"/>
+  <app-header />
+  <router-view></router-view>
 </template>
 
 <script>
   export default {
-    
+
   }
 </script>
 
