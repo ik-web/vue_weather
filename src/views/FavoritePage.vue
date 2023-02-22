@@ -1,31 +1,28 @@
 <template>
   <app-layout pageName="Favorite">
-    <main class="main">
-      <div class="main__top">
-        <h2>Current Date</h2>
-        <div class="main__buttons">
-          <app-button class="page__button button_left button_isActive">
-            Today
-          </app-button>
+    <weather-card>
+      <template #card-header>
+        <day-toggler />
+      </template>
 
-          <app-button class="page__button button_right">
-            Five days
-          </app-button>
-        </div>
-      </div>
+      <template #card-cityTabs>
+        <app-tabs color="blue">
+          <app-tab
+            v-for="city in [{id:1,name:'Kyiv',path:'/favorite/kyiv'}, {id:2,name:'Vliv',path:'/favorite/lyiv'}]"
+            :tab="city"
+            :key="city.id"
+            :activeTab="currentCityName === city.name"
+            @click="() => handleTabClick(city.name)"
+            color="blue"
+          />
+        </app-tabs>
+      </template>
 
-      <div class="main__cities">
-        <ul class="main__cityList">
-          <li v-for="city in cities" :key="city">
-            <city-card :city="city"/>
-          </li>
-        </ul>
-      </div>
-
-      <div class="main__weatherTimeline">
-        <weather-timeline />
-      </div>
-    </main>
+      <template #card-weatherInfo>
+        <city-card v-if="true" />
+        <day-list :days="['Today', 'Tomorrow', 'Friday', 'Saturday', 'Sunday']" v-if="false" />
+      </template>
+    </weather-card>
   </app-layout>
 </template>
 
@@ -33,7 +30,12 @@
   export default {
     data() {
       return {
-        cities: ['City'],
+        currentCityName: 'Kyiv'
+      }
+    },
+    methods: {
+      handleTabClick(cityName) {
+        this.currentCityName = cityName;
       }
     }
   }

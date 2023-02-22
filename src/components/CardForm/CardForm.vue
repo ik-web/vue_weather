@@ -2,7 +2,7 @@
   <form class="form">
     <input
       type="text"
-      placeholder="City name"
+      placeholder="Find city"
       class="form__input"
     />
 
@@ -14,7 +14,7 @@
 
 <script>
   export default {
-    name: 'city-form'
+    name: 'card-form'
   }
 </script>
 
@@ -29,7 +29,7 @@
       height: $form_item_size;
       padding: 0 8px;
       border: 1px solid $color_gray;
-      border-radius: $block_rounded 0 0 $block_rounded;
+      border-radius: $box_rounded_left;
 
       &:focus {
         outline: none;
@@ -51,6 +51,7 @@
 
     .form__button {
       width: 44px;
+      border-radius: $box_rounded_right;
     }
   }
 </style>

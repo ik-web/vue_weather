@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h2 class="timeline">
+  <div class="timeline">
+    <h2>
       Weather timeline
     </h2>
   </div>
@@ -8,7 +8,7 @@
 
 <script>
   export default {
-    name: 'weather-timeline'
+    name: 'time-line'
   }
 </script>
 
@@ -17,9 +17,7 @@
   @import '@/styles/utils/mixins';
 
   .timeline {
-    @include block_border;
-    min-height: 280px;
-    padding: $padding_block;
-    box-shadow: $box-shadow;
+    @include flex_center;
+    height: 100%;
   }
 </style>

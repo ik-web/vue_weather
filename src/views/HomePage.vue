@@ -1,27 +1,27 @@
 <template>
   <app-layout pageName="Home">
-    <main class="main">
-      <div class="main__top">
-        <h2>Current Date</h2>
-        <city-form />
-      </div>
+    <weather-card>
+      <template #card-header>
+        <card-form />
+      </template>
 
-      <div class="main__cities">
-        <ul class="main__cityList">
-          <li v-for="city in cities" :key="city">
-            <city-card :city="city" favoriteButton />
-          </li>
+      <template #card-cityTabs>
+        <app-tabs color="blue" buttonAddNewTab>
+          <app-tab
+            v-for="city in [{id:1,name:'Kyiv',path:'/kyiv'}, {id:2 ,name:'Vliv', path:'/lyiv'}]"
+            :tab="city"
+            :key="city.id"
+            :activeTab="currentCityName === city.name"
+            @click="() => handleTabClick(city.name)"
+            color="blue"
+          />
+        </app-tabs>
+      </template>
 
-          <li v-if="cities.length < 5">
-            <city-card />
-          </li>
-        </ul>
-      </div>
-
-      <div class="main__weatherTimeline">
-        <weather-timeline />
-      </div>
-    </main>
+      <template #card-weatherInfo>
+        <city-card buttonFavorite />
+      </template>
+    </weather-card>
   </app-layout>
 </template>
 
@@ -29,7 +29,12 @@
   export default {
     data() {
       return {
-        cities: ['City']
+        currentCityName: 'Kyiv'
+      }
+    },
+    methods: {
+      handleTabClick(cityName) {
+        this.currentCityName = cityName;
       }
     }
   }

@@ -16,7 +16,20 @@
   align-items: center;
 }
 
-@mixin block_border {
+@mixin tab {
+  transform: translateY(1px);
+  display: block;
+  color: $color_gray_light;
+  background-color: $color_secondary;
   border: 1px solid $color_gray;
-  border-radius: $block_rounded;
+  border-radius: $box_rounded_top;
+
+  &_active {
+    color: $color_main;
+    border-bottom: none;
+  }
+
+  &_blue {
+    background: $color_blue_light;
+  }
 }

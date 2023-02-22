@@ -1,6 +1,6 @@
 $font_size: 16px;
 $font_size_small: 14px;
-$font_family: sans-serif;
+$font_family: 'Ubuntu', sans-serif;
 
 $color_main: #202020;
 $color_secondary: #fff;
@@ -10,15 +10,21 @@ $color_gray_light: #b8b8b8;
 $color_overlay: #464646c9;
 $color_red: #ca0000;
 $color_red_dark: #8b0000;
+$color_green: #004747;
+$color_blue: #006ace;
+$color_blue_light: #d9f4ff;
 
-$padding_block: 16px;
-$padding_block_mobile: 12px;
+$box_indent: 16px;
+$box_indent_mobile: 12px;
 
-$block_rounded: 8px;
+$box_rounded: 8px;
+$box_rounded_top: $box_rounded $box_rounded 0 0;
+$box_rounded_left: $box_rounded 0 0 $box_rounded;
+$box_rounded_right: 0 $box_rounded $box_rounded 0;
+$box_rounded_bottom: 0 0 $box_rounded $box_rounded;
+$box_shadow: 1px 1px 4px $color_gray_dark;
 
 $height_header: 80px;
-
-$box_shadow: 1px 1px 4px $color_gray;
 
 $form_item_size: 36px;
 $transition_behavior: 0.15s linear;

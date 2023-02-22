@@ -1,23 +1,26 @@
 <template>
-  <div class="layout">
-    <div class="container">
-      <div class="layout__inner">
-        <nav class="layout__tabs">
-          <router-link
-            v-for="page in pages"
-            :key="page.name"
-            :to="page.path"
-            :class="page.name === pageName
-              ? 'layout__tab layout__tab_active'
-              : 'layout__tab'"
-          >
-            {{ page.name }}
-          </router-link>
-        </nav>
+  <div class="page">
+    <delete-confirm v-if="false"/>
+    <app-header class="page__header"/>
 
-        <slot></slot>
+    <main class="page__main">
+      <div class="container">
+        <div class="page__mainInner">
+          <app-tabs>
+            <app-tab
+              v-for="page in pages"
+              :tab="page"
+              :key="page.id"
+              :activeTab="pageName === page.name"
+            />
+          </app-tabs>
+
+          <div class="page__content">
+              <slot></slot>
+          </div>
+        </div>
       </div>
-    </div>
+    </main>
   </div>
 </template>
 
@@ -34,14 +37,16 @@
       return {
         pages: [
           {
+            id: 1,
             name: 'Home',
-            path: '/'
+            path: '/',
           },
           {
+            id: 2,
             name: 'Favorite',
-            path: '/favorite'
+            path: '/favorite',
           }
-        ]
+        ],
       }
     }
   }
@@ -50,44 +55,29 @@
 <style lang='scss' scoped>
   @import '@/styles/utils/vars';
   @import '@/styles/utils/mixins';
-  .layout {
-    padding: 60px 0 20px;
 
-    &__inner {
-      position: relative;
+  .page {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    min-width: 360px;
+    min-height: 100vh;
+    padding-bottom: 40px;
+
+    &__header {
+      margin-bottom: 20px;
+    }
+    
+    &__mainInner {
+      display: grid;
+      grid-template-rows: auto 1fr;
       height: 100%;
-      padding: $padding_block;
-      border: 1px solid $color_gray;
-      border-radius: 0 0 $block_rounded $block_rounded;
     }
 
-    &__tabs {
-      position: absolute;
-      top: -40px;
-      left: 0;
-      z-index: 5;
-      transform: translateX(-2px);
-      display: flex;
-      align-items: center;
-    }
-
-    &__tab {
-      transform: translateX(1px);
-      @include flex_center;
-      height: 40px;
-      padding: 0 16px;
-      color: $color_gray_light;
+    &__content {
+      padding: 40px;
+      background: $color_secondary;
       border: 1px solid $color_gray;
-      border-radius: $block_rounded $block_rounded 0 0;
-      
-      &:first-of-type {
-        transform: translateX(1px);
-      }
-      
-      &_active {
-        color: $color_main;
-        border-bottom: 1px solid $color_secondary;
-      }
+      border-radius: 0 $box_rounded $box_rounded $box_rounded;
     }
   }
 </style>

@@ -6,12 +6,18 @@ import FavoritePageVue from '@/views/FavoritePage.vue';
 const routes = [
   {
     path: '/',
-    name: 'home',
+    component: HomePageVue
+  },
+  {
+    path: '/:city',
     component: HomePageVue
   },
   {
     path: '/favorite',
-    name: 'favorite',
+    component: FavoritePageVue
+  },
+  {
+    path: '/favorite/:city',
     component: FavoritePageVue
   }
 ];

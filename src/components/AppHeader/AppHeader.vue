@@ -7,7 +7,7 @@
         </div>
 
         <h1 class="header__title">
-          Vue Weather
+          Vue Weather App
         </h1>
       </div>
     </div>
@@ -33,9 +33,16 @@
       padding: 12px 0;
     }
 
+    &__title {
+      color: $color_green;
+    }
+
     &__logo {
-      width: 50px;
-      height: 50px;
+      width: 56px;
+      height: 56px;
+      padding: 8px;
+      border-radius: 50%;
+      box-shadow: $box_shadow;
     }
   }
 </style>
