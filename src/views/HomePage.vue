@@ -6,13 +6,18 @@
       </template>
 
       <template #card-cityTabs>
-        <app-tabs color="blue" buttonAddNewTab>
+        <!-- newTab - these are props of type Object that contain the 'onClick' key
+        to add a function that will be executed when the button is clicked.
+        'isTabLimit' - a boolean key to disable the button if there is a tab limit
+        Example { onClick: fn(), isTabLimit: false }
+        newTabColor - an optional props to change this tab's color. -->
+        <app-tabs newTabColor="blue" :newTab="newTab">
           <app-tab
-            v-for="city in [{id:1,name:'Kyiv',path:'/kyiv'}, {id:2 ,name:'Vliv', path:'/lyiv'}]"
+            v-for="city in cities"
             :tab="city"
             :key="city.id"
-            :activeTab="currentCityName === city.name"
-            @click="() => handleTabClick(city.name)"
+            :activeTab="currentCity.id === city.id"
+            @click="() => handleTabClick(city)"
             color="blue"
           />
         </app-tabs>
@@ -26,16 +31,52 @@
 </template>
 
 <script>
+import {
+  mapActions,
+  mapGetters,
+  mapMutations,
+  mapState
+} from 'vuex';
+
   export default {
-    data() {
-      return {
-        currentCityName: 'Kyiv'
+    computed: {
+      ...mapState([
+        'currentCity',
+        'cities',
+      ]),
+
+      ...mapGetters([
+        'cityLimit'
+      ]),
+
+      ...mapMutations([
+        'setCurrentCity',
+        'addCity'
+      ]),
+
+      ...mapActions([
+        'fetchWeather'
+      ]),
+
+      newTab() {
+        return {
+          isTabLimit: (() => this.cityLimit)(),
+          onClick: () => {
+            this.$store.commit('addCity');
+          }
+        }
       }
     },
+
     methods: {
-      handleTabClick(cityName) {
-        this.currentCityName = cityName;
+      handleTabClick(city) {
+        this.$store.commit('setCurrentCity', city.id);
       }
+    },
+
+    mounted() {
+      this.$store.commit('setCurrentCity', 1);
+      this.$router.push(this.currentCity.path);
     }
   }
 </script>

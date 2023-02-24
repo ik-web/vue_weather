@@ -3,7 +3,7 @@
     <div class="city__info">
       <h2 class="city__name">{{ currentCity.name }}</h2>
       <p class="city__date">{{ currentDate }}</p>
-      <p class="city__temp">{{ currentCity.weather.temp }}</p>
+      <p class="city__temp">{{ weather.temp }}</p>
     </div>
 
     <div class="city__img">
@@ -21,18 +21,18 @@
 
     <div class="city__buttonContainer">
       <icon-button v-if="buttonFavorite">
-        <img src="@/assets/icon/favorite.svg" alt="Toggle favorite city button">
+        <img src="@/assets/icon/favorite.svg" alt="Toggle favorite city">
       </icon-button>
 
       <icon-button>
-        <img src="@/assets/icon/cross.svg" alt="Delete card button">
+        <img src="@/assets/icon/cross.svg" alt="Remove city card">
       </icon-button>
     </div>
   </div>
 </template>
 
 <script>
-import { getCelsiusFromKelvin, getCurrentDate } from '@/utils';
+import { mapState } from 'vuex';
 
   export default {
     name: 'cityCard',
@@ -41,16 +41,13 @@ import { getCelsiusFromKelvin, getCurrentDate } from '@/utils';
         type: Boolean
       }
     },
-    data() {
-      return {
-        currentCity: {
-          name:'City name',
-          weather: {
-            temp:getCelsiusFromKelvin(275)
-          }
-        },
-        currentDate: getCurrentDate()
-      }
+
+    computed: {
+      ...mapState([
+        'currentDate',
+        'currentCity',
+        'weather'
+      ])
     }
   }
 </script>

@@ -11,8 +11,8 @@
             v-for="city in [{id:1,name:'Kyiv',path:'/favorite/kyiv'}, {id:2,name:'Vliv',path:'/favorite/lyiv'}]"
             :tab="city"
             :key="city.id"
-            :activeTab="currentCityName === city.name"
-            @click="() => handleTabClick(city.name)"
+            :activeTab="currentCityId === city.id"
+            @click="() => handleTabClick(city.id)"
             color="blue"
           />
         </app-tabs>
@@ -30,12 +30,12 @@
   export default {
     data() {
       return {
-        currentCityName: 'Kyiv'
+        currentCityId: 1
       }
     },
     methods: {
-      handleTabClick(cityName) {
-        this.currentCityName = cityName;
+      handleTabClick(cityId) {
+        this.currentCityId = cityId;
       }
     }
   }

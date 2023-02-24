@@ -3,6 +3,7 @@ import App from './App.vue';
 
 import './styles/main.scss';
 import router from './routes';
+import { store } from './store';
 import { components } from './components';
 
 const app = createApp(App);
@@ -12,5 +13,6 @@ components.forEach(component => {
 });
 
 app
-app.use(router)
-.mount('#app');
+  .use(router)
+  .use(store) 
+  .mount('#app');

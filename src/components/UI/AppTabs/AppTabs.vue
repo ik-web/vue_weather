@@ -2,7 +2,11 @@
   <nav class="tabs">
     <slot></slot>
 
-    <button :class="addTabClasses" v-if="buttonAddNewTab">
+    <button
+      v-if="isNewTab"
+      :class="tabClasses"
+      @click="handleClick"
+    >
       <svg
         class="tabs__icon"
         height="32px"
@@ -25,22 +29,33 @@
   export default {
     name: 'app-tabs',
     props: {
-      buttonAddNewTab: {
-        type: Boolean
+      newTab: {
+        type: Object
       },
-      color: {
+      newTabColor: {
         type: String
-      },
+      }
     },
+
     computed: {
-      addTabClasses() {
-        if (this.color) {
-          return `tabs__addTab tabs__addTab_${this.color}`
+      tabClasses() {
+        if (this.newTabColor) {
+          return `tabs__addTab tabs__addTab_${this.newTabColor}`
         }
 
         return 'tabs__addTab'
+      },
+
+      isNewTab() {
+        return this.newTab && !this.newTab.isTabLimit;
       }
-    }
+    },
+
+    methods: {
+      handleClick() {
+        this.newTab.onClick();
+      }
+    },
   }
 </script>
 

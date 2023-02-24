@@ -13,6 +13,7 @@
     props: {
       tab: {
         type: Object,
+        required: true
       },
       activeTab: {
         type: Boolean
@@ -21,6 +22,7 @@
         type: String
       }
     },
+
     computed: {
       linkClass() {
         if (this.activeTab) {
@@ -37,7 +39,7 @@
 
         return 'tab'
       }
-    }
+    },
   }
 </script>
 

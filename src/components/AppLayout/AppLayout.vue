@@ -33,6 +33,7 @@
         required: true
       }
     },
+
     data() {
       return {
         pages: [
