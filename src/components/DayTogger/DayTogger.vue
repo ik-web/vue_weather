@@ -40,25 +40,5 @@
 </script>
 
 <style lang="scss" scoped>
-  @import '@/styles/utils/vars';
-  @import '@/styles/utils/mixins';
-
-  .buttons {
-    display: flex;
-  }
-
-  .button {
-    &_left {
-      border-radius: $box_rounded_left;
-    }
-
-    &_right {
-      border-radius: $box_rounded_right;
-    }
-
-    &_active {
-      background: $color_gray;
-      color: $color_secondary;
-    }
-  }
+  @import './DayTogger.scss';
 </style>

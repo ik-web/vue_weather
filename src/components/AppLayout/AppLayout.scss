@@ -1,0 +1,23 @@
+@import '@/styles/utils/vars';
+@import '@/styles/utils/mixins';
+
+.layout {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  min-width: 360px;
+  min-height: 100vh;
+  padding-bottom: 40px;
+
+  &__header {
+    margin-bottom: 20px;
+  }
+
+  &__mainInner {
+    position: relative;
+    height: 100%;
+    padding: 40px;
+    background: $color_secondary;
+    border: 1px solid $color_gray;
+    border-radius: 0 $box_rounded $box_rounded $box_rounded;
+  }
+}

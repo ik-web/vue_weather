@@ -1,0 +1,55 @@
+@import '@/styles/utils/vars';
+@import '@/styles/utils/mixins';
+
+.city {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr auto 4fr;
+  justify-items: center;
+  align-items: center;
+  height: 100%;
+
+  &__info {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  &__name {
+    margin-bottom: 10px;
+    font-size:  28px;
+  }
+
+  &__date {
+    color: $color_gray;
+    margin-bottom: 28px;
+  }
+
+  &__temp {
+    font-size:  60px;
+    font-weight: 600;
+    color: $color_blue;
+  }
+
+  &__img {
+    width: 100px;
+  }
+
+  &__divider {
+    width: 1px;
+    height: 100%;
+    background: $color_gray_light;
+  }
+
+  &__buttonContainer {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    display: flex;
+    gap: 8px;
+  }
+}
+
+.isFavorite {
+  fill: $color_main;
+}

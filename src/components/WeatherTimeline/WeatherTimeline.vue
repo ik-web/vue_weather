@@ -8,16 +8,10 @@
 
 <script>
   export default {
-    name: 'time-line'
+    name: 'wether-timeline'
   }
 </script>
 
 <style lang="scss" scoped>
-  @import '@/styles/utils/vars';
-  @import '@/styles/utils/mixins';
-
-  .timeline {
-    @include flex_center;
-    height: 100%;
-  }
+  @import './WeatherTimeline.scss';
 </style>

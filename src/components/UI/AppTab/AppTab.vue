@@ -44,11 +44,5 @@
 </script>
 
 <style lang="scss" scoped>
-  @import '@/styles/utils/vars';
-  @import '@/styles/utils/mixins';
-
-  .tab {
-    @include tab;
-    padding: 6px 16px;
-  }
+  @import './AppTab.scss';
 </style>

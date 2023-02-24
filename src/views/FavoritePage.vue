@@ -1,44 +1,67 @@
 <template>
   <app-layout pageName="Favorite">
-    <weather-card>
-      <template #card-header>
+    <app-message v-if="!favoriteCities.length">
+      There is no any favorite city...
+    </app-message>
+
+    <app-content v-else>
+      <template #header>
         <day-toggler />
       </template>
 
-      <template #card-cityTabs>
-        <app-tabs color="blue">
+      <template #tabs>
+        <app-tabs>
           <app-tab
-            v-for="city in [{id:1,name:'Kyiv',path:'/favorite/kyiv'}, {id:2,name:'Vliv',path:'/favorite/lyiv'}]"
+            v-for="city in favoriteCities"
             :tab="city"
             :key="city.id"
-            :activeTab="currentCityId === city.id"
-            @click="() => handleTabClick(city.id)"
+            :activeTab="currentFavoriteCity.id === city.id"
+            @click="() => handleTabClick(city)"
             color="blue"
           />
         </app-tabs>
       </template>
 
-      <template #card-weatherInfo>
-        <city-card v-if="true" />
-        <day-list :days="['Today', 'Tomorrow', 'Friday', 'Saturday', 'Sunday']" v-if="false" />
+      <template #weatherInfo>
+        <weather-info :currentCity="currentFavoriteCity">
+          <template #buttons>
+  
+          </template>
+        </weather-info>
       </template>
-    </weather-card>
+  
+      <template #timeline>
+        <wether-timeline />
+      </template>
+    </app-content>
   </app-layout>
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        currentCityId: 1
-      }
-    },
-    methods: {
-      handleTabClick(cityId) {
-        this.currentCityId = cityId;
-      }
+import { mapState } from 'vuex';
+
+export default {
+  computed: {
+    ...mapState({
+      favoriteCities: state => state.favorite.favoriteCities,
+      currentFavoriteCity: state => state.favorite.currentFavoriteCity,
+    })
+  },
+
+  methods: {
+    handleTabClick(city) {
+      this.$store.commit('favorite/setFavoriteCurrentCity', city.id);
+    }
+  },
+
+  mounted() {
+    if (this.favoriteCities.length) {
+      const currentFavoriteCity = this.currentFavoriteCity.id || 1
+      this.$store.commit('favorite/setFavoriteCurrentCity', currentFavoriteCity);
+      this.$router.push(this.currentFavoriteCity.path);
     }
   }
+}
 </script>
 
 <style lang="scss" scoped></style>

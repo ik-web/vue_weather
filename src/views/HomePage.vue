@@ -1,17 +1,17 @@
 <template>
+  <delete-confirm
+    v-if="cityIdForRemove"
+    :currentCity="currentCity"
+  />
+
   <app-layout pageName="Home">
-    <weather-card>
-      <template #card-header>
-        <card-form />
+    <app-content>
+      <template #header>
+        <find-city />
       </template>
 
-      <template #card-cityTabs>
-        <!-- newTab - these are props of type Object that contain the 'onClick' key
-        to add a function that will be executed when the button is clicked.
-        'isTabLimit' - a boolean key to disable the button if there is a tab limit
-        Example { onClick: fn(), isTabLimit: false }
-        newTabColor - an optional props to change this tab's color. -->
-        <app-tabs newTabColor="blue" :newTab="newTab">
+      <template #tabs>
+        <app-tabs>
           <app-tab
             v-for="city in cities"
             :tab="city"
@@ -20,62 +20,62 @@
             @click="() => handleTabClick(city)"
             color="blue"
           />
+
+          <add-tab @click="handleAddTab" v-if="!cityLimit" />
         </app-tabs>
       </template>
 
-      <template #card-weatherInfo>
-        <city-card buttonFavorite />
+      <template #weatherInfo>
+        <weather-info :currentCity="currentCity">
+          <template #buttons>
+            <favorite-button></favorite-button>
+            <close-button @click="handleRemoveCity" />
+          </template>
+        </weather-info>
       </template>
-    </weather-card>
+  
+      <template #timeline>
+        <wether-timeline />
+      </template>
+    </app-content>
   </app-layout>
 </template>
 
 <script>
-import {
-  mapActions,
-  mapGetters,
-  mapMutations,
-  mapState
-} from 'vuex';
+import { mapGetters, mapState } from 'vuex';
 
   export default {
     computed: {
-      ...mapState([
-        'currentCity',
-        'cities',
-      ]),
-
-      ...mapGetters([
-        'cityLimit'
-      ]),
-
-      ...mapMutations([
-        'setCurrentCity',
-        'addCity'
-      ]),
-
-      ...mapActions([
-        'fetchWeather'
-      ]),
-
-      newTab() {
-        return {
-          isTabLimit: (() => this.cityLimit)(),
-          onClick: () => {
-            this.$store.commit('addCity');
-          }
-        }
-      }
+      ...mapState({
+        cities: state => state.city.cities,
+        currentCity: state => state.city.currentCity,
+        cityIdForRemove: state => state.city.cityIdForRemove,
+      }),
+      ...mapGetters('city', [
+        'cityLimit',
+      ])
     },
 
     methods: {
       handleTabClick(city) {
-        this.$store.commit('setCurrentCity', city.id);
+        this.$store.commit('city/setCurrentCity', city.id);
+      },
+
+      handleAddTab() {
+        if (!this.cityLimit) {
+          this.$store.commit('city/addCity');
+        }
+      },
+
+      handleRemoveCity() {
+        this.$store.commit('city/setCityIdForRemove');
+        console.log('click');
       }
     },
 
     mounted() {
-      this.$store.commit('setCurrentCity', 1);
+      const currentCityId = this.currentCity.id || 1
+      this.$store.commit('city/setCurrentCity', currentCityId);
       this.$router.push(this.currentCity.path);
     }
   }

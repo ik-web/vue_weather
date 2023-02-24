@@ -35,7 +35,8 @@ html {
 }
 
 #app {
-  background: url('@/assets/img/page_bg.webp') center / cover no-repeat;
+  // background: url('@/assets/img/page_bg.webp') center / cover no-repeat;
+  background: $color_blue_light;
 }
 
 .container {

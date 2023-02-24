@@ -1,15 +1,15 @@
 <template>
-  <button class="button">
+  <h2 class="message">
     <slot></slot>
-  </button>
+  </h2>
 </template>
 
 <script>
   export default {
-    name: 'app-button'
+    name: 'app-message'
   }
 </script>
 
 <style lang="scss" scoped>
-  @import './AppButton.scss';
+  @import './AppMessage.scss';
 </style>

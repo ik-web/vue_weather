@@ -17,8 +17,10 @@
 }
 
 @mixin tab {
+  position: relative;
+  z-index: 3;
   transform: translateY(1px);
-  display: block;
+
   color: $color_gray_light;
   background-color: $color_secondary;
   border: 1px solid $color_gray;
@@ -26,7 +28,7 @@
 
   &_active {
     color: $color_main;
-    border-bottom: none;
+    border-bottom: $color_secondary;
   }
 
   &_blue {

@@ -25,34 +25,5 @@
 </script>
 
 <style lang="scss" scoped>
-  @import '@/styles/utils/vars';
-  @import '@/styles/utils/mixins';
-
-    .day {
-      width: 100%;
-      height: 100%;
-      padding: 24px $box_indent 44px;
-      box-shadow: $box_shadow;
-
-    &__content {
-      @include flex_between;
-      flex-direction: column;
-      height: 100%;
-    }
-
-    &__name {
-      font-size: 24px;
-    }
-    
-    &__temp {
-      font-size: 48px;
-      font-weight: 600;
-      color: $color_gray;
-    }
-
-    &__icon {
-      width: 80px;
-      height: 80px;
-    }
-  }
+  @import './DayItem.scss';
 </style>

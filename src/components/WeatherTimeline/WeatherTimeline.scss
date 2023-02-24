@@ -1,0 +1,7 @@
+@import '@/styles/utils/vars';
+@import '@/styles/utils/mixins';
+
+.timeline {
+  @include flex_center;
+  height: 100%;
+}

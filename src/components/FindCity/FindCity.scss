@@ -1,0 +1,35 @@
+@import '@/styles/utils/vars';
+@import '@/styles/utils/mixins';
+
+.form {
+  display: flex;
+  
+  &__input {
+    height: $form_item_size;
+    padding: 0 8px;
+    border: 1px solid $color_gray;
+    border-radius: $box_rounded_left;
+
+    &:focus {
+      outline: none;
+    }
+    
+    &::placeholder {
+      transition: all $transition_behavior;
+    }
+
+    &:focus.form__input::placeholder,
+    &:hover.form__input::placeholder {
+      color: $color_gray;
+    }
+
+    &::placeholder {
+      color: $color_gray_light;
+    }
+  }
+
+  .form__button {
+    width: 44px;
+    border-radius: $box_rounded_right;
+  }
+}

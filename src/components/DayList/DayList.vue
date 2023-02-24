@@ -19,13 +19,5 @@
 </script>
 
 <style lang="scss" scoped>
-  @import '@/styles/utils/vars';
-  @import '@/styles/utils/mixins';
-  .dayList {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: 1fr;
-    gap: 16px;
-    height: 100%;
-  }
+  @import './DayList.scss';
 </style>
