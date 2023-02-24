@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <delete-confirm v-if="false"/>
+    <delete-confirm v-if="cityIdForRemove"/>
     <app-header class="page__header"/>
 
     <main class="page__main">
@@ -25,6 +25,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
   export default {
     name: "app-layout",
     props: {
@@ -49,6 +51,12 @@
           }
         ],
       }
+    },
+
+    computed: {
+      ...mapState([
+        'cityIdForRemove'
+      ])
     }
   }
 </script>

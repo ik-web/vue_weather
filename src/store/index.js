@@ -23,6 +23,7 @@ export const store = createStore({
           path: '/kharkiv'
         }
       ],
+      cityIdForRemove: null
     }
   },
 
@@ -49,6 +50,21 @@ export const store = createStore({
 
       state.cities.push(city);
       state.currentCity = city;
+    },
+
+    setCityIdForRemove(state, id = state.currentCity.id) {
+      state.cityIdForRemove = id;
+    },
+
+    removeCity(state) {
+      if (state.cities.length > 1) {
+        state.cities = state.cities
+          .filter((city) => city.id !== state.currentCity.id);
+        state.currentCity = state.cities[state.cities.length - 1];
+        state.cityIdForRemove = null;
+      } else {
+        state.cityIdForRemove = null;
+      }
     }
   },
 

@@ -41,7 +41,7 @@
 
     @keyframes showModal{
       0% {
-        transform: scale(0.01);
+        transform: scale(0);
       }
 
       100% {

@@ -2,17 +2,17 @@
   <app-modal>
     <div class="confirm">
       <h3 class="confirm__message">
-        Are you sure you want to delete this city?
+        Are you sure you want to remove this city?
       </h3>
   
       <div class="confirm__buttons">
-        <app-button @click="cancelDeleteCity" class="confirm__button">
+        <app-button @click="cancelRemoveCity" class="confirm__button">
           Cancel
         </app-button>
   
         <app-button
           class="confirm__button confirm__button_delete"
-          @click="handleDeleteCity"
+          @click="handleRemoveCity"
         >
           <img src="@/assets/icon/delete.svg" alt="Delete icon">
         </app-button>
@@ -22,15 +22,28 @@
 </template>
 
 <script>
+import { mapMutations, mapState } from 'vuex';
+
   export default {
     name: 'delete-confirm',
+    computed: {
+      ...mapState([
+        'currentCity'
+      ]),
+      ...mapMutations([
+        'setCityIdForRemove',
+        'removeCity'
+      ])
+    },
+
     methods: {
       cancelRemoveCity() {
-        alert('In the future, this button will cancel the city deletion');
+        this.$store.commit('setCityIdForRemove', false);
       },
 
       handleRemoveCity() {
-        alert('In the future, this button will delete the city');
+        this.$store.commit('removeCity');
+        this.$router.push(this.currentCity.path);
       }
     }
   }
@@ -59,12 +72,10 @@
 
     div > &__button {
       border: none;
-      background: $color_gray;
-      color: $color_main;
+      background: $color_gray_light;
       
       &:hover {
-        background: $color_gray;
-        color: $color_secondary;
+        color: $color_green;
       }
 
       &_delete {

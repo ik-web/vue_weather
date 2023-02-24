@@ -24,7 +24,7 @@
         <img src="@/assets/icon/favorite.svg" alt="Toggle favorite city">
       </icon-button>
 
-      <icon-button>
+      <icon-button @click="handleRemoveCity">
         <img src="@/assets/icon/cross.svg" alt="Remove city card">
       </icon-button>
     </div>
@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapMutations, mapState } from 'vuex';
 
   export default {
     name: 'cityCard',
@@ -47,7 +47,17 @@ import { mapState } from 'vuex';
         'currentDate',
         'currentCity',
         'weather'
+      ]),
+
+      ...mapMutations([
+        'setCityIdForRemove'
       ])
+    },
+
+    methods: {
+      handleRemoveCity() {
+        this.$store.commit('setCityIdForRemove');
+      }
     }
   }
 </script>
