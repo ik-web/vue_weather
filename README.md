@@ -9,9 +9,16 @@
   <img src="https://img.shields.io/badge/-vue-seagreen" alt="vue">
 </p>
 
+<p align="center">
+  <a href="https://ik-web.github.io/vue_weather/">
+    >> DEMO LINK <<
+  </a> 
+</p>
+
 ## Description:
 
 Test task for the front-end developer position (Vue.js)
+Weather app with Vue/Vue-router/Vuex.
 
 ## Documentation
 
