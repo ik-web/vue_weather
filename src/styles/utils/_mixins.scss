@@ -21,6 +21,7 @@
   z-index: 3;
   transform: translateY(1px);
 
+  height: 32px;
   color: $color_gray_light;
   background-color: $color_secondary;
   border: 1px solid $color_gray;
@@ -33,5 +34,13 @@
 
   &_blue {
     background: $color_blue_light;
+  }
+}
+
+@mixin icon_button {
+  border-radius: 50%;
+
+  &:hover {
+    background: $color_blue;
   }
 }

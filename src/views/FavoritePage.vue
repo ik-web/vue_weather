@@ -1,4 +1,9 @@
 <template>
+  <delete-confirm
+    v-if="favoriteCityIdForRemove"
+    :currentCity="currentFavoriteCity"
+  />
+
   <app-layout pageName="Favorite">
     <app-message v-if="!favoriteCities.length">
       There is no any favorite city...
@@ -45,6 +50,7 @@ export default {
     ...mapState({
       favoriteCities: state => state.favorite.favoriteCities,
       currentFavoriteCity: state => state.favorite.currentFavoriteCity,
+      favoriteCityIdForRemove: state => state.favorite.favoriteCityIdForRemove
     })
   },
 

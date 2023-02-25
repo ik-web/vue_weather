@@ -1,12 +1,12 @@
 <template>
-  <icon-button>
+  <icon-button class="button">
     <svg
+      :class="isActive ? 'button_icon button__icon_active' : 'button_icon'"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
       stroke-width="1.8"
       stroke="#202020"
-      class="w-6 h-6"
     >
       <path
         stroke-linecap="round"
@@ -19,7 +19,12 @@
 
 <script>
   export default {
-    name: 'favorite-button'
+    name: 'favorite-button',
+    props: {
+      isActive: {
+        type: Boolean
+      }
+    }
   }
 </script>
 

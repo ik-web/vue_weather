@@ -1,2 +1,12 @@
 @import '@/styles/utils/vars';
 @import '@/styles/utils/mixins';
+
+.button {
+  @include icon_button;
+
+  &__icon {
+    &_active {
+      fill: $color_main;
+    }
+  }
+}

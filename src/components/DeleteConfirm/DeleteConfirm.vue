@@ -6,13 +6,13 @@
       </h3>
   
       <div class="confirm__buttons">
-        <app-button @click="cancelRemoveCity" class="confirm__button">
+        <app-button @click="onCancel" class="confirm__button">
           Cancel
         </app-button>
   
         <app-button
           class="confirm__button confirm__button_delete"
-          @click="handleRemoveCity"
+          @click="onRemove"
         >
           <img src="@/assets/icon/delete.svg" alt="Delete icon">
         </app-button>
@@ -26,19 +26,14 @@
   export default {
     name: 'delete-confirm',
     props: {
-      currentCity: {
-        type: Object,
+      onCancel: {
+        type: Function,
         required: true
-      }
-    },
-    methods: {
-      cancelRemoveCity() {
-        this.$store.commit('city/setCityIdForRemove', false);
       },
 
-      handleRemoveCity() {
-        this.$store.commit('city/removeCity');
-        this.$router.push(this.currentCity.path);
+      onRemove: {
+        type: Function,
+        required: true
       }
     }
   }

@@ -27,7 +27,11 @@
     }
 
     &_delete {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       width: 40px;
+      padding: 8px;
       color: $color_secondary;
       background: $color_red_dark;
       

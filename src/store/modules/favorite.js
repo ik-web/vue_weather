@@ -1,25 +1,16 @@
+import { getNewItemId } from "@/utils";
+
 export default {
   state () {
     return {
       currentFavoriteCity: {},
-      favoriteCities: [
-        {
-          id: 1,
-          name: 'Kyiv',
-          path: '/favorite/kyiv'
-        },
-        {
-          id: 2,
-          name: 'Kharkiv',
-          path: '/favorite/kharkiv'
-        }
-      ],
+      favoriteCities: [],
       favoriteCityIdForRemove: null
     }
   },
 
   getters: {
-    favoriteLityLimit(state) {
+    favoriteCityLimit(state) {
       return state.favoriteCities.length === 5;
     },
   },
@@ -30,17 +21,27 @@ export default {
         .find((city) => city.id === cityId);
     },
 
-    addFavoriteCity() {
- 
+    addFavoriteCity(state, city) {
+      const favoriteCity = {
+        name: city.name,
+        path: `/favorite/${city.name.toLowerCase()}`,
+        id: getNewItemId(state.favoriteCities)
+      }
+
+      state.favoriteCities.push(favoriteCity);
     },
 
-    setFavoriteCityIdForRemove() {
-
+    setFavoriteCityIdForRemove(state, cityId) {
+      state.favoriteCityIdForRemove = cityId
     },
 
-    removeFavoriteCity() {
-
+    removeFavoriteCity(state) {
+      state.favoriteCities = state.favoriteCities
+        .filter((city) => city.id !== state.favoriteCityIdForRemove);
+      state.currentFavoriteCity = state.favoriteCities[state.favoriteCities.length - 1];
+      state.favoriteCityIdForRemove = null;
     },
   },
+
   namespaced: true
 }
