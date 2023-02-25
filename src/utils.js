@@ -20,3 +20,14 @@ export const getCelsiusFromKelvin = (temp) => {
 export const getNewItemId = (data) => {
   return (data[data.length - 1]?.id + 1) || 1;
 };
+
+export const getWeather = (data) => {
+  return {
+    temp: getCelsiusFromKelvin(data.main.temp),
+    pressure: data.main.pressure,
+    humidity: data.main.humidity,
+    windSpeed: data,
+    description: data,
+    icon: data,
+  }
+}

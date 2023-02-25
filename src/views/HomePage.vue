@@ -47,17 +47,20 @@
 </template>
 
 <script>
-import { mapGetters, mapState } from 'vuex';
+import { mapActions, mapGetters, mapState } from 'vuex';
 
   export default {
     computed: {
-      ...mapState({
-        cities: state => state.city.cities,
-        currentCity: state => state.city.currentCity,
-        favoriteCities: state => state.favorite.favoriteCities,
-        cityIdForRemove: state => state.city.cityIdForRemove,
-        favoriteCityIdForRemove: state => state.favorite.favoriteCityIdForRemove
-      }),
+      ...mapState('city', [
+        'cities',
+        'currentCity',
+        'cityIdForRemove',
+      ]),
+
+      ...mapState('favorite', [
+        'favoriteCities',
+        'favoriteCityIdForRemove',
+      ]),
 
       ...mapGetters('city', [
         'cityLimit',
@@ -70,8 +73,13 @@ import { mapGetters, mapState } from 'vuex';
     },
 
     methods: {
+      ...mapActions({
+        getWeather: 'weather/getWeather'
+      }),
+
       handleTabClick(city) {
         this.$store.commit('city/setCurrentCity', city.id);
+        this.getWeather(this.currentCity.name);
       },
 
       handleAddTab() {
@@ -104,6 +112,8 @@ import { mapGetters, mapState } from 'vuex';
       const currentCityId = this.currentCity.id || 1
       this.$store.commit('city/setCurrentCity', currentCityId);
       this.$router.push(this.currentCity.path);
+
+      this.getWeather(this.currentCity.name);
     }
   }
 </script>

@@ -16,7 +16,8 @@ export default {
           path: '/kharkiv'
         }
       ],
-      cityIdForRemove: null
+      cityIdForRemove: null,
+      cityNames: [],
     }
   },
 

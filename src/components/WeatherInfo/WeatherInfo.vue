@@ -3,7 +3,7 @@
     <div class="city__info">
       <h2 class="city__name">{{ currentCity.name }}</h2>
       <p class="city__date">{{ currentDate }}</p>
-      <p class="city__temp">{{ '+2' }}</p>
+      <p class="city__temp">{{ currentWeather.temp }}</p>
     </div>
 
     <div class="city__img">
@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import { getCurrentDate } from '@/utils';
 
   export default {
@@ -41,7 +42,13 @@ import { getCurrentDate } from '@/utils';
       return {
         currentDate: getCurrentDate()
       }
-    }
+    },
+
+    computed: {
+      ...mapState('weather', [
+        'currentWeather'
+      ])
+    },
   }
 </script>
 

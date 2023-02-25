@@ -2,6 +2,7 @@
   <form class="form">
     <input
       type="text"
+      name="city"
       placeholder="Find city"
       class="form__input"
     />
@@ -14,7 +15,7 @@
 
 <script>
   export default {
-    name: 'find-city'
+    name: 'find-city',
   }
 </script>
 

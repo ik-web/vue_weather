@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 
 export default {
   computed: {
@@ -56,6 +56,10 @@ export default {
   },
 
   methods: {
+    ...mapActions({
+        getWeather: 'weather/getWeather'
+      }),
+      
     handleTabClick(city) {
       this.$store.commit('favorite/setFavoriteCurrentCity', city.id);
     },
@@ -82,10 +86,13 @@ export default {
 
   mounted() {
     if (this.favoriteCities.length) {
-      const currentFavoriteCity = this.currentFavoriteCity.id || 1
+      const currentFavoriteCity = this.currentFavoriteCity.id || 1;
+
       this.$store.commit('favorite/setFavoriteCurrentCity', currentFavoriteCity);
       this.$router.push(this.currentFavoriteCity.path);
+      this.getWeather(this.currentFavoriteCity.name);
     }
+
   }
 }
 </script>
