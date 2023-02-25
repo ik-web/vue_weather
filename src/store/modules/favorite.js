@@ -38,7 +38,7 @@ export default {
     removeFavoriteCity(state) {
       state.favoriteCities = state.favoriteCities
         .filter((city) => city.id !== state.favoriteCityIdForRemove);
-      state.currentFavoriteCity = state.favoriteCities[state.favoriteCities.length - 1];
+      state.currentFavoriteCity = state.favoriteCities[state.favoriteCities.length - 1] || {};
       state.favoriteCityIdForRemove = null;
     },
   },

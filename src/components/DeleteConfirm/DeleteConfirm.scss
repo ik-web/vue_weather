@@ -19,25 +19,16 @@
   }
 
   div > &__button {
-    border: none;
     background: $color_gray_light;
-    
-    &:hover {
-      color: $color_green;
-    }
+    border: none;
 
     &_delete {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 40px;
-      padding: 8px;
       color: $color_secondary;
       background: $color_red_dark;
       
       &:hover {
+        color: $color_secondary;
         background: $color_red;
-        border: none;
       }
     }
   }

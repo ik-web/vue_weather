@@ -50,10 +50,9 @@ export default {
         state.cities = state.cities
           .filter((city) => city.id !== state.cityIdForRemove);
         state.currentCity = state.cities[state.cities.length - 1];
-        state.cityIdForRemove = null;
-      } else {
-        state.cityIdForRemove = null;
       }
+
+      state.cityIdForRemove = null;
     },
   },
 

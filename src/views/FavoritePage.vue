@@ -1,7 +1,8 @@
 <template>
   <delete-confirm
     v-if="favoriteCityIdForRemove"
-    :currentCity="currentFavoriteCity"
+    :onCancel="handleCancelRemoveCity"
+    :onRemove="handleRemoveCity"
   />
 
   <app-layout pageName="Favorite">
@@ -30,7 +31,7 @@
       <template #weatherInfo>
         <weather-info :currentCity="currentFavoriteCity">
           <template #buttons>
-  
+            <close-button @click="handlePrepareCityToRemove" />
           </template>
         </weather-info>
       </template>
@@ -57,7 +58,26 @@ export default {
   methods: {
     handleTabClick(city) {
       this.$store.commit('favorite/setFavoriteCurrentCity', city.id);
-    }
+    },
+
+    handlePrepareCityToRemove() {
+      this.$store
+        .commit('favorite/setFavoriteCityIdForRemove', this.currentFavoriteCity.id);
+    },
+
+    handleCancelRemoveCity() {
+      this.$store.commit('favorite/setFavoriteCityIdForRemove', false);
+    },
+
+    handleRemoveCity() {
+      this.$store.commit('favorite/removeFavoriteCity');
+
+      if (this.favoriteCities.length) {
+        this.$router.push(this.currentFavoriteCity.path);
+      } else {
+        this.$router.push('/favorite');
+      }
+    },
   },
 
   mounted() {

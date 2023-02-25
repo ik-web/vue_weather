@@ -14,7 +14,7 @@
           class="confirm__button confirm__button_delete"
           @click="onRemove"
         >
-          <img src="@/assets/icon/delete.svg" alt="Delete icon">
+          Delete
         </app-button>
       </div>
     </div>
