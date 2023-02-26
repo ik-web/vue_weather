@@ -2,6 +2,7 @@
 @import '@/styles/utils/mixins';
 
 .form {
+  position: relative;
   display: flex;
   
   &__input {
@@ -25,6 +26,33 @@
 
     &::placeholder {
       color: $color_gray_light;
+    }
+  }
+
+  &__inputDropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 5;
+
+    
+    padding: 8px;
+    background: $color_secondary;
+    border: 1px solid $color_gray;
+    border-radius: $box_rounded;
+    box-shadow: $box_shadow;
+  }
+
+  &__inputDropdownItem {
+    padding: 12px 0;
+    border-bottom: 1px dashed $color_gray;
+
+    cursor: pointer;
+
+    &:last-of-type {
+      margin-bottom: 0;
+      border-bottom: none;
     }
   }
 

@@ -1,30 +1,46 @@
-import { getWeather } from "@/utils";
-import { fetchWeather } from "@/api/weatherAPI";
+import { getTodayWeather } from '@/utils';
+import { fetchTodayWeather } from '@/api/weatherAPI';
 
 export default {
   state() {
     return {
-      currentWeather: {}
-    }
+      todayWeather: {},
+      todayWeatherLoading: false,
+      todayWeatherError: '',
+    };
   },
 
   mutations: {
-    setCurrentWeather(state, weather) {
-      state.currentWeather = weather;
-    }
+    setTodayWeather(state, weather) {
+      state.todayWeather = weather;
+    },
+
+    setTodayWeatherLoading(state, loading) {
+      state.todayWeatherLoading = loading;
+    },
+
+    setTodayWeatherError(state, error) {
+      state.todayWeatherError = error;
+    },
   },
 
   actions: {
-    async getWeather({ commit }, cityName) {
+    async getTodayWeather({ commit }, cityName) {
+      commit('setTodayWeatherLoading', true);
+
       try {
-        const data = await fetchWeather(cityName)
-        const weather = getWeather(data.data);
-        commit('setCurrentWeather', weather);
-      } catch(error) {
-        return error.message;
+        const response = await fetchTodayWeather(cityName);
+        const weather = getTodayWeather(response.data);
+
+        commit('setTodayWeatherError', '');
+        commit('setTodayWeather', weather);
+      } catch (error) {
+        commit('setTodayWeatherError', error.message);
+      } finally {
+        commit('setTodayWeatherLoading', false);
       }
-    }
+    },
   },
 
-  namespaced: true
-}
+  namespaced: true,
+};

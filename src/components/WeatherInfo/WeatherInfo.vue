@@ -3,7 +3,7 @@
     <div class="city__info">
       <h2 class="city__name">{{ currentCity.name }}</h2>
       <p class="city__date">{{ currentDate }}</p>
-      <p class="city__temp">{{ currentWeather.temp }}</p>
+      <p class="city__temp">{{ todayWeather.temp }}</p>
     </div>
 
     <div class="city__img">
@@ -46,7 +46,7 @@ import { getCurrentDate } from '@/utils';
 
     computed: {
       ...mapState('weather', [
-        'currentWeather'
+        'todayWeather'
       ])
     },
   }

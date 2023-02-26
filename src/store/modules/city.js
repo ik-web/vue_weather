@@ -8,12 +8,11 @@ export default {
         {
           id: 1,
           name: 'Kyiv',
-          path: '/kyiv'
-        },
-        {
-          id: 2,
-          name: 'Kharkiv',
-          path: '/kharkiv'
+          path: '/kyiv',
+          coord: {
+            lon: 30.5236,
+            lat: 50.45
+          }
         }
       ],
       cityIdForRemove: null,
@@ -40,6 +39,18 @@ export default {
 
       state.cities.push(city);
       state.currentCity = city;
+    },
+
+    changeCity(state, cityName) {
+      const changedCity = {
+        ...state.currentCity,
+        name: cityName,
+        path: `/${cityName.toLowerCase()}`
+      }
+
+      state.cities = state.cities
+        .map((city) => city.id === state.currentCity.id ? changedCity : city);
+      state.currentCity = changedCity;
     },
 
     setCityIdForRemove(state, id = state.currentCity.id) {

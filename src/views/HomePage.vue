@@ -74,12 +74,12 @@ import { mapActions, mapGetters, mapState } from 'vuex';
 
     methods: {
       ...mapActions({
-        getWeather: 'weather/getWeather'
+        getTodayWeather: 'weather/getTodayWeather'
       }),
 
       handleTabClick(city) {
         this.$store.commit('city/setCurrentCity', city.id);
-        this.getWeather(this.currentCity.name);
+        this.getTodayWeather(this.currentCity.name);
       },
 
       handleAddTab() {
@@ -112,9 +112,8 @@ import { mapActions, mapGetters, mapState } from 'vuex';
       const currentCityId = this.currentCity.id || 1
       this.$store.commit('city/setCurrentCity', currentCityId);
       this.$router.push(this.currentCity.path);
-
-      this.getWeather(this.currentCity.name);
-    }
+      this.getTodayWeather(this.currentCity.name);
+    },
   }
 </script>
 

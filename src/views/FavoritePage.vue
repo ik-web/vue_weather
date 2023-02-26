@@ -57,7 +57,7 @@ export default {
 
   methods: {
     ...mapActions({
-        getWeather: 'weather/getWeather'
+        getTodayWeather: 'weather/getTodayWeather'
       }),
       
     handleTabClick(city) {
@@ -90,7 +90,7 @@ export default {
 
       this.$store.commit('favorite/setFavoriteCurrentCity', currentFavoriteCity);
       this.$router.push(this.currentFavoriteCity.path);
-      this.getWeather(this.currentFavoriteCity.name);
+      this.getTodayWeather(this.currentFavoriteCity.name);
     }
 
   }
