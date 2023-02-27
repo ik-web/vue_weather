@@ -9,6 +9,8 @@ export default {
           name: 'Kyiv'
         }
       ],
+      citiesLimit: 5,
+      defaultCityCount: 1,
       currentCity: {},
       cityIdForRemove: null,
     }
@@ -16,7 +18,7 @@ export default {
 
   getters: {
     cityLimit(state) {
-      return state.cities.length === 5;
+      return state.cities.length === state.citiesLimit;
     },
   },
 
@@ -38,8 +40,7 @@ export default {
     changeCity(state, cityName) {
       const changedCity = {
         ...state.currentCity,
-        name: cityName,
-        path: `/${cityName.toLowerCase()}`
+        name: cityName[0].toUpperCase() + cityName.slice(1)
       }
 
       state.cities = state.cities
@@ -52,7 +53,7 @@ export default {
     },
 
     removeCity(state) {
-      if (state.cities.length > 1) {
+      if (state.cities.length > state.defaultCityCount) {
         state.cities = state.cities
           .filter((city) => city.id !== state.cityIdForRemove);
         state.currentCity = state.cities[state.cities.length - 1];

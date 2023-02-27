@@ -56,7 +56,7 @@ import {
 
   export default {
     computed: {
-      ...mapState('city', [
+      ...mapState('cities', [
         'cities',
         'currentCity',
         'cityIdForRemove',
@@ -67,7 +67,7 @@ import {
         'favoriteCityIdForRemove',
       ]),
 
-      ...mapGetters('city', [
+      ...mapGetters('cities', [
         'cityLimit',
       ]),
 
@@ -78,7 +78,7 @@ import {
     },
 
     methods: {
-      ...mapMutations('city', [
+      ...mapMutations('cities', [
         'setCurrentCity',
         'addCity',
         'setCityIdForRemove',

@@ -52,9 +52,8 @@ import {
         'cityNames'
       ]),
     },
-
     methods: {
-      ...mapMutations('city', [
+      ...mapMutations('cities', [
         'changeCity'
       ]),
 
@@ -73,7 +72,8 @@ import {
       handleInput(e) {
         this.inputQuery = e.target.value;
 
-        const isMakeRequest = this.inputQuery.trim() && this.inputQuery.trim().length > 1;
+        const isMakeRequest =
+          this.inputQuery.trim() && this.inputQuery.trim().length > 1;
 
         if (isMakeRequest) {
           this.getCityNames(this.inputQuery);

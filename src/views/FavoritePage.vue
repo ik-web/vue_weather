@@ -64,6 +64,7 @@ export default {
         'setFavoriteCurrentCity',
         'setFavoriteCityIdForRemove',
         'removeFavoriteCity',
+        'initFavoriteCities'
       ]),
       
     handleTabClick(city) {
@@ -85,10 +86,10 @@ export default {
   },
 
   mounted() {
-    if (this.favoriteCities.length) {
-      const currentFavoriteCity = this.currentFavoriteCity.id || 1;
+    this.initFavoriteCities();
 
-      this.setFavoriteCurrentCity(currentFavoriteCity);
+    if (this.favoriteCities.length) {
+      this.setFavoriteCurrentCity(this.currentFavoriteCity.id);
       this.getTodayWeather(this.currentFavoriteCity.name);
     }
   }
