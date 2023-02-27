@@ -3,7 +3,7 @@
     <div class="container">
       <div class="header__inner">
         <div class="header__logo">
-          <img src="@/assets/icon/logo.svg" alt="Weather logo">
+          <img src="logo.svg" alt="Weather logo">
         </div>
 
         <h1 class="header__title">

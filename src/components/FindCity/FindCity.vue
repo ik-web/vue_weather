@@ -28,7 +28,7 @@
     </div>
 
     <app-button class="form__button button_right">
-      <img src="@/assets/icon/search.svg" alt="Search icon">
+      <img src="icons/buttons/search.svg" alt="Search icon">
     </app-button>
   </form>
 </template>

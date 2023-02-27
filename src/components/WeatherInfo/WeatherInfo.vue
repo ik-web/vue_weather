@@ -3,12 +3,12 @@
     <div class="city__info">
       <h2 class="city__name">{{ currentCity.name }}</h2>
       <p class="city__date">{{ currentDate }}</p>
-
-      <p class="city__temp city__temp_red" v-if="todayWeather.temp > 0">
-        +{{ todayWeather.temp }}
+      <p
+        :class="todayWeather.temp > 0
+          ? 'city__temp city__temp_red' : 'city__temp'"
+      >
+        {{ `${todayWeather.temp}°C` }}
       </p>
-      
-      <p class="city__temp" v-else>{{ todayWeather.temp }}</p>
     </div>
 
     <div class="city__img">
@@ -21,40 +21,17 @@
     <div class="city__divider"></div>
 
     <div class="city__moreInfo">
-      <article class="city__moreInfoItem">
+      <article
+        class="city__moreInfoItem"
+        v-for="infoItem in infoItems"
+        :key="infoItem.id"
+      >
         <img
-          src="@/assets/icon/weather/humidity.png"
-          alt="humidity"
+          :src="infoItem.src"
+          :alt="infoItem.name"
           class="city__moreInfoIcon"
         >
-        <h4>Humidity:</h4> {{ todayWeather.humidity }} %
-      </article>
-
-      <article class="city__moreInfoItem">
-        <img
-          src="@/assets/icon/weather/press.png"
-          alt="Pressure"
-          class="city__moreInfoIcon"
-        >
-        <h4>Pressure:</h4> {{ todayWeather.pressure }} hPa
-      </article>
-
-      <article class="city__moreInfoItem">
-        <img
-          src="@/assets/icon/weather/wind.png"
-          alt="Wind speed"
-          class="city__moreInfoIcon"
-        >
-        <h4>Wind speed:</h4> {{ todayWeather.windSpeed }} m/s
-      </article>
-
-      <article class="city__moreInfoItem">
-        <img
-          src="@/assets/icon/weather/precipitation.svg"
-          alt="Precipitation"
-          class="city__moreInfoIcon"
-        >
-        <h4>Precipitation:</h4> {{ todayWeather.precipitation }}
+        <h4>{{ infoItem.name }}:</h4> {{ infoItem.data }}
       </article>
     </div>
 
@@ -76,17 +53,44 @@ import { getCurrentDate } from './utils';
         required: true
       }
     },
-
     data() {
       return {
         currentDate: getCurrentDate()
       }
     },
-
     computed: {
       ...mapState('weather', [
         'todayWeather'
       ]),
+
+      infoItems() {
+        return [
+          {
+            id: 1,
+            name: 'Humidity',
+            src: 'icons/weather/humidity.png',
+            data: `${this.todayWeather.humidity}%`
+          },
+          {
+            id: 2,
+            name: 'Pressure',
+            src: 'icons/weather/press.png',
+            data: `${this.todayWeather.pressure} hPa`
+          },
+          {
+            id: 3,
+            name: 'Wind speed',
+            src: 'icons//weather/wind.png',
+            data: `${this.todayWeather.windSpeed} m/s`
+          },
+          {
+            id: 4,
+            name: 'Precipitation',
+            src: 'icons//weather/precipitation.svg',
+            data: `${this.todayWeather.precipitation}`
+          }
+        ]
+      } 
     }
   }
 </script>

@@ -4,7 +4,7 @@
       <h3 class="day__name">{{ day.name }}</h3>
       <p class="day__temp">{{ day.temp }}</p>
       <img
-        src="@/assets/icon/logo.svg"
+        src="logo.svg"
         alt="Weather icon"
         class="day__icon"
       >
