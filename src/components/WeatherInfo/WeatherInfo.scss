@@ -3,11 +3,16 @@
 
 .city {
   position: relative;
-  display: grid;
-  grid-template-columns: 1fr 1fr auto 4fr;
-  justify-items: center;
-  align-items: center;
   height: 100%;
+
+  &__content {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr auto 4fr;
+    justify-items: center;
+    align-items: center;
+    height: 100%;
+  }
 
   &__info {
     display: flex;

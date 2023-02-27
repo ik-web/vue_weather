@@ -88,10 +88,9 @@ export default {
     if (this.favoriteCities.length) {
       const currentFavoriteCity = this.currentFavoriteCity.id || 1;
 
-      this.this.setFavoriteCurrentCity(currentFavoriteCity);
+      this.setFavoriteCurrentCity(currentFavoriteCity);
       this.getTodayWeather(this.currentFavoriteCity.name);
     }
-
   }
 }
 </script>

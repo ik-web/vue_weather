@@ -47,7 +47,12 @@
 </template>
 
 <script>
-import { mapActions, mapGetters, mapState } from 'vuex';
+import {
+  mapActions,
+  mapGetters,
+  mapMutations,
+  mapState
+} from 'vuex';
 
   export default {
     computed: {
@@ -73,43 +78,52 @@ import { mapActions, mapGetters, mapState } from 'vuex';
     },
 
     methods: {
-      ...mapActions({
-        getTodayWeather: 'weather/getTodayWeather'
-      }),
+      ...mapMutations('city', [
+        'setCurrentCity',
+        'addCity'
+      ]),
+
+      ...mapMutations('favorite', [
+        'addFavoriteCity'
+      ]),
+
+      ...mapActions('weather', [
+        'getTodayWeather'
+      ]),
 
       handleTabClick(city) {
-        this.$store.commit('city/setCurrentCity', city.id);
+        this.setCurrentCity(city.id);
         this.getTodayWeather(this.currentCity.name);
       },
 
       handleAddTab() {
         if (!this.cityLimit) {
-          this.$store.commit('city/addCity');
+          this.addCity();
         }
       },
 
       handlePrepareCityToRemove() {
-        this.$store.commit('city/setCityIdForRemove');
+        this.setCityIdForRemove();
       },
 
       handleCancelRemoveCity() {
-        this.$store.commit('city/setCityIdForRemove', false);
+        this.setCityIdForRemove(false);
       },
 
       handleRemoveCity() {
-        this.$store.commit('city/removeCity');
+        this.removeCity();
       },
 
       handleAddFavoriteCity() {
         if (!this.isFavoriteCity) {
-          this.$store.commit('favorite/addFavoriteCity', this.currentCity);
+          this.addFavoriteCity(this.currentCity);
         }
       },
     },
 
     mounted() {
       const currentCityId = this.currentCity.id || 1
-      this.$store.commit('city/setCurrentCity', currentCityId);
+      this.setCurrentCity(currentCityId);
       this.getTodayWeather(this.currentCity.name);
     },
   }

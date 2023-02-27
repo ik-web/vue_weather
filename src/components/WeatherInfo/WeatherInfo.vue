@@ -1,42 +1,48 @@
 <template>
   <div class="city">
-    <div class="city__info">
-      <h2 class="city__name">{{ currentCity.name }}</h2>
-      <p class="city__date">{{ currentDate }}</p>
-      <p
-        :class="todayWeather.temp > 0
-          ? 'city__temp city__temp_red' : 'city__temp'"
-      >
-        {{ `${todayWeather.temp}°C` }}
-      </p>
-    </div>
-
-    <div class="city__img">
-      <img
-        :src="`http://openweathermap.org/img/wn/${todayWeather.icon}@2x.png`"
-        alt="Weather icon"
-      >
-    </div>
-
-    <div class="city__divider"></div>
-
-    <div class="city__moreInfo">
-      <article
-        class="city__moreInfoItem"
-        v-for="infoItem in infoItems"
-        :key="infoItem.id"
-      >
-        <img
-          :src="infoItem.src"
-          :alt="infoItem.name"
-          class="city__moreInfoIcon"
+    <app-message v-if="todayWeatherLoading">
+      Loading...
+    </app-message>
+  
+    <div class="city__content" v-else>
+      <div class="city__info">
+        <h2 class="city__name">{{ currentCity.name }}</h2>
+        <p class="city__date">{{ currentDate }}</p>
+        <p
+          :class="todayWeather.temp > 0
+            ? 'city__temp city__temp_red' : 'city__temp'"
         >
-        <h4>{{ infoItem.name }}:</h4> {{ infoItem.data }}
-      </article>
-    </div>
-
-    <div class="city__buttonContainer">
-      <slot name="buttons"></slot>
+          {{ `${todayWeather.temp}°C` }}
+        </p>
+      </div>
+  
+      <div class="city__img" v-if="todayWeather.icon">
+        <img
+          :src="`http://openweathermap.org/img/wn/${todayWeather.icon}@2x.png`"
+          alt="Weather icon"
+        >
+      </div>
+  
+      <div class="city__divider"></div>
+  
+      <div class="city__moreInfo">
+        <article
+          class="city__moreInfoItem"
+          v-for="infoItem in infoItems"
+          :key="infoItem.id"
+        >
+          <img
+            :src="infoItem.src"
+            :alt="infoItem.name"
+            class="city__moreInfoIcon"
+          >
+          <h4>{{ infoItem.name }}:</h4> {{ infoItem.data }}
+        </article>
+      </div>
+  
+      <div class="city__buttonContainer">
+        <slot name="buttons"></slot>
+      </div>
     </div>
   </div>
 </template>
@@ -60,7 +66,8 @@ import { getCurrentDate } from './utils';
     },
     computed: {
       ...mapState('weather', [
-        'todayWeather'
+        'todayWeather',
+        'todayWeatherLoading'
       ]),
 
       infoItems() {
