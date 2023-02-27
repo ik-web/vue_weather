@@ -98,7 +98,6 @@ import { mapActions, mapGetters, mapState } from 'vuex';
 
       handleRemoveCity() {
         this.$store.commit('city/removeCity');
-        this.$router.push(this.currentCity.path);
       },
 
       handleAddFavoriteCity() {
@@ -111,7 +110,6 @@ import { mapActions, mapGetters, mapState } from 'vuex';
     mounted() {
       const currentCityId = this.currentCity.id || 1
       this.$store.commit('city/setCurrentCity', currentCityId);
-      this.$router.push(this.currentCity.path);
       this.getTodayWeather(this.currentCity.name);
     },
   }

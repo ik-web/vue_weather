@@ -73,7 +73,9 @@ import {
       handleInput(e) {
         this.inputQuery = e.target.value;
 
-        if (this.inputQuery.trim() && this.inputQuery.trim().length > 1) {
+        const isMakeRequest = this.inputQuery.trim() && this.inputQuery.trim().length > 1;
+
+        if (isMakeRequest) {
           this.getCityNames(this.inputQuery);
         } else {
           this.setCityNames([]);
@@ -83,7 +85,6 @@ import {
       handleSubmit() {
         if (this.inputQuery.trim()) {
           this.changeCity(this.inputQuery.trim());
-          this.$router.push(`/${this.inputQuery.toLowerCase()}`);
           this.getTodayWeather(this.inputQuery);
         }
 

@@ -44,44 +44,43 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex';
+import { mapActions, mapMutations, mapState } from 'vuex';
 
 export default {
   computed: {
-    ...mapState({
-      favoriteCities: state => state.favorite.favoriteCities,
-      currentFavoriteCity: state => state.favorite.currentFavoriteCity,
-      favoriteCityIdForRemove: state => state.favorite.favoriteCityIdForRemove
-    })
+    ...mapState('favorite', [
+        'favoriteCities',
+        'currentFavoriteCity',
+        'favoriteCityIdForRemove',
+      ]),
   },
 
   methods: {
     ...mapActions({
         getTodayWeather: 'weather/getTodayWeather'
       }),
+
+      ...mapMutations('favorite', [
+        'setFavoriteCurrentCity',
+        'setFavoriteCityIdForRemove',
+        'removeFavoriteCity',
+      ]),
       
     handleTabClick(city) {
-      this.$store.commit('favorite/setFavoriteCurrentCity', city.id);
+      this.setFavoriteCurrentCity(city.id);
       this.getTodayWeather(this.currentFavoriteCity.name);
     },
 
     handlePrepareCityToRemove() {
-      this.$store
-        .commit('favorite/setFavoriteCityIdForRemove', this.currentFavoriteCity.id);
+      this.setFavoriteCityIdForRemove(this.currentFavoriteCity.id);
     },
 
     handleCancelRemoveCity() {
-      this.$store.commit('favorite/setFavoriteCityIdForRemove', false);
+      this.setFavoriteCityIdForRemove(false);
     },
 
     handleRemoveCity() {
-      this.$store.commit('favorite/removeFavoriteCity');
-
-      if (this.favoriteCities.length) {
-        this.$router.push(this.currentFavoriteCity.path);
-      } else {
-        this.$router.push('/favorite');
-      }
+      this.removeFavoriteCity();
     },
   },
 
@@ -89,8 +88,7 @@ export default {
     if (this.favoriteCities.length) {
       const currentFavoriteCity = this.currentFavoriteCity.id || 1;
 
-      this.$store.commit('favorite/setFavoriteCurrentCity', currentFavoriteCity);
-      this.$router.push(this.currentFavoriteCity.path);
+      this.this.setFavoriteCurrentCity(currentFavoriteCity);
       this.getTodayWeather(this.currentFavoriteCity.name);
     }
 

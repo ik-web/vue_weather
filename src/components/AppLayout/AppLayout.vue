@@ -4,12 +4,14 @@
 
     <div class="container">
       <app-tabs>
-        <app-tab
+        <router-link
+          :to="page.path"
           v-for="page in pages"
-          :tab="page"
           :key="page.id"
-          :activeTab="pageName === page.name"
-        />
+        >
+          <app-tab :tab="page" :activeTab="pageName === page.name"
+          />
+        </router-link>
       </app-tabs>
     </div>
 

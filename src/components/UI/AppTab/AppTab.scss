@@ -4,4 +4,5 @@
 .tab {
   @include tab;
   padding: 6px 16px;
+  cursor: pointer;
 }

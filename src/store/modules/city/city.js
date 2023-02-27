@@ -6,8 +6,7 @@ export default {
       cities: [
         {
           id: 1,
-          name: 'Kyiv',
-          path: '/kyiv'
+          name: 'Kyiv'
         }
       ],
       currentCity: {},

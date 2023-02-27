@@ -1,10 +1,7 @@
 <template>
-  <router-link
-    :to="tab.path"
-    :class="linkClass"
-  >
+  <div :class="linkClasses">
     {{ tab.name }}
-  </router-link>
+  </div>
 </template>
 
 <script>
@@ -24,7 +21,7 @@
     },
 
     computed: {
-      linkClass() {
+      linkClasses() {
         if (this.activeTab) {
           if (this.color) {
             return `tab tab_active tab_${this.color}`
