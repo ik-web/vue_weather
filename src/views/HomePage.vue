@@ -80,7 +80,9 @@ import {
     methods: {
       ...mapMutations('city', [
         'setCurrentCity',
-        'addCity'
+        'addCity',
+        'setCityIdForRemove',
+        'removeCity'
       ]),
 
       ...mapMutations('favorite', [
