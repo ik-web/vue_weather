@@ -46,8 +46,9 @@
 
   &__inputDropdownItem {
     padding: 12px 0;
+    font-size: $font_size_small;
+    color: $color_gray;
     border-bottom: 1px dashed $color_gray;
-
     cursor: pointer;
 
     &:last-of-type {

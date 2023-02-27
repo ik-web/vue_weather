@@ -88,12 +88,12 @@ import {
         }
 
         this.inputQuery = '';
+        this.setCityNames([]);
       },
 
       handleDropItem(inputQuery) {
         this.inputQuery = inputQuery;
         this.handleSubmit();
-        this.setCityNames([]);
       }
     }
   }

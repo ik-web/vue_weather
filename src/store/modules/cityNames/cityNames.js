@@ -1,5 +1,5 @@
-import { debounce, getCityNamesData } from '@/utils';
 import { fetchCityNames } from '@/api/weatherAPI';
+import { debounce, getCityNamesData } from './utils';
 
 export default {
   state() {

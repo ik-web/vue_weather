@@ -35,7 +35,8 @@ html {
 }
 
 #app {
-  background: $color_blue_light;
+  background: url('@/assets/img/app_bg.webp') center / cover no-repeat;
+  background-attachment: fixed;
 }
 
 .container {

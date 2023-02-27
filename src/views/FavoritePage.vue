@@ -62,6 +62,7 @@ export default {
       
     handleTabClick(city) {
       this.$store.commit('favorite/setFavoriteCurrentCity', city.id);
+      this.getTodayWeather(this.currentFavoriteCity.name);
     },
 
     handlePrepareCityToRemove() {

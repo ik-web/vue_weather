@@ -1,5 +1,5 @@
-import { getTodayWeather } from '@/utils';
 import { fetchTodayWeather } from '@/api/weatherAPI';
+import { getTodayWeather } from './utils';
 
 export default {
   state() {

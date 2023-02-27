@@ -10,6 +10,7 @@ export const fetchTodayWeather = async (cityName) => {
   return await axios.get(WEATHER_URL, {
     params: {
       q: cityName,
+      units: 'metric',
       appid: WEATHER_API_KEY
     }
   });

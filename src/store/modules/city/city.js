@@ -3,20 +3,15 @@ import { getNewItemId } from "@/utils";
 export default {
   state () {
     return {
-      currentCity: {},
       cities: [
         {
           id: 1,
           name: 'Kyiv',
-          path: '/kyiv',
-          coord: {
-            lon: 30.5236,
-            lat: 50.45
-          }
+          path: '/kyiv'
         }
       ],
+      currentCity: {},
       cityIdForRemove: null,
-      cityNames: [],
     }
   },
 
