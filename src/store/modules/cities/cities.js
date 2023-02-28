@@ -17,7 +17,7 @@ export default {
   },
 
   getters: {
-    cityLimit(state) {
+    isCitiesLimit(state) {
       return state.cities.length === state.citiesLimit;
     },
   },

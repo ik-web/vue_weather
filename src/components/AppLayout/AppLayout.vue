@@ -45,8 +45,8 @@
           },
           {
             id: 2,
-            name: 'Favorite',
-            path: '/favorite',
+            name: 'Favorites',
+            path: '/favorites',
           }
         ],
       }

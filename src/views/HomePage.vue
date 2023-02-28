@@ -1,9 +1,15 @@
 <template>
   <delete-confirm
     v-if="cityIdForRemove"
-    :onCancel="handleCancelRemoveCity"
-    :onRemove="handleRemoveCity"
+    @cancel="handleCancelRemoveCity"
+    @remove="handleRemoveCity"
   />
+
+  <app-message v-if="isFavoriteLimitMessage" @close="handleCloseLimitMessage">
+    Currently, the limit of cities in your favorites is {{ citiesLimit }}. You should delete one of the previous ones and then add a new one.
+  </app-message>
+
+
 
   <app-layout pageName="Home">
     <app-content>
@@ -22,7 +28,7 @@
             color="blue"
           />
 
-          <add-tab @click="handleAddTab" v-if="!cityLimit" />
+          <add-tab @click="handleAddTab" v-if="!isCitiesLimit" />
         </app-tabs>
       </template>
 
@@ -55,11 +61,17 @@ import {
 } from 'vuex';
 
   export default {
+    data() {
+      return {
+        isFavoriteLimitMessage: false
+      }
+    },
     computed: {
       ...mapState('cities', [
         'cities',
         'currentCity',
         'cityIdForRemove',
+        'citiesLimit'
       ]),
 
       ...mapState('favorite', [
@@ -68,7 +80,11 @@ import {
       ]),
 
       ...mapGetters('cities', [
-        'cityLimit',
+        'isCitiesLimit',
+      ]),
+
+      ...mapGetters('favorite', [
+        'isFavoriteCitiesLimit',
       ]),
 
       isFavoriteCity() {
@@ -99,7 +115,7 @@ import {
       },
 
       handleAddTab() {
-        if (!this.cityLimit) {
+        if (!this.isCitiesLimit) {
           this.addCity();
         }
       },
@@ -117,10 +133,16 @@ import {
       },
 
       handleAddFavoriteCity() {
-        if (!this.isFavoriteCity) {
+        if (this.isFavoriteCitiesLimit) {
+          this.isFavoriteLimitMessage = true;
+        } else if (!this.isFavoriteCity) {
           this.addFavoriteCity(this.currentCity);
         }
       },
+
+      handleCloseLimitMessage() {
+        this.isFavoriteLimitMessage = false;
+      }
     },
 
     mounted() {

@@ -1,8 +1,8 @@
 <template>
   <div class="city">
-    <app-message v-if="todayWeatherLoading">
+    <app-hint v-if="todayWeatherLoading">
       Loading...
-    </app-message>
+    </app-hint>
   
     <div class="city__content" v-else>
       <div class="city__info">

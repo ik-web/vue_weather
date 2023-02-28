@@ -1,14 +1,14 @@
 <template>
   <delete-confirm
     v-if="favoriteCityIdForRemove"
-    :onCancel="handleCancelRemoveCity"
-    :onRemove="handleRemoveCity"
+    @cancel="handleCancelRemoveCity"
+    @remove="handleRemoveCity"
   />
 
-  <app-layout pageName="Favorite">
-    <app-message v-if="!favoriteCities.length">
+  <app-layout pageName="Favorites">
+    <app-hint v-if="!favoriteCities.length">
       There is no any favorite city...
-    </app-message>
+    </app-hint>
 
     <app-content v-else>
       <template #header>

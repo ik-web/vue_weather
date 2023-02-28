@@ -1,6 +1,6 @@
 <template>
   <icon-button>
-    <img src="icons/buttons/close.svg" alt="Remove city card">
+    <img src="icons/buttons/close.svg" alt="Close button">
   </icon-button>
 </template>
 

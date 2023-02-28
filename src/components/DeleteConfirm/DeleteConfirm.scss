@@ -4,6 +4,7 @@
 .confirm {
   max-width: 400px;
   width: 100%;
+  padding: $box_indent;
 
   &__message {
     margin: 20px 0 60px;

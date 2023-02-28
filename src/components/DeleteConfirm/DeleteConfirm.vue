@@ -25,15 +25,13 @@
 
   export default {
     name: 'delete-confirm',
-    props: {
-      onCancel: {
-        type: Function,
-        required: true
+    methods: {
+      onCancel() {
+        this.$emit('cancel');
       },
 
-      onRemove: {
-        type: Function,
-        required: true
+      onRemove() {
+        this.$emit('remove');
       }
     }
   }

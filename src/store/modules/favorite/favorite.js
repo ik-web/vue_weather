@@ -11,7 +11,7 @@ export default {
   },
 
   getters: {
-    favoriteCityLimit(state) {
+    isFavoriteCitiesLimit(state) {
       return state.favoriteCities.length === state.favoriteCitiesLimit;
     },
   },
